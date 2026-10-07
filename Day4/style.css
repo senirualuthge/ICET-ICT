@@ -70,4 +70,7 @@ h1 {
     /* background-color: #ff00ff; */
     background-color: green;
     font-family: Arial, tahoma, sans-serif;
+    padding: 20px;
+    border: 7px solid black;
+
 }
