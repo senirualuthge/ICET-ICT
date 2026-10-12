@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  align-items: center; /* Centers text vertically with the image */
+  gap: 15px;         /* Adds space between the image and paragraph */
+}
+.container img {
+  width: 150px;        /* Adjust image width as needed */
+  height: auto;
+}
+.h1{
+    padding-left: 20px;
+}
+.btn btn-secondary btn2{
+    opacity: 0.1;
+    color: #0d0000;
+    
+}
+.btncontainer{
+    padding-left: 200px;
+}
+.tablecontainer{
+    padding-left: 50px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    
+}
+.table1{
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(153, 156, 156);
+}
+.tbh{
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 200;
+
+}
+.card-group{
+    padding: 20px;
+    width:50%;
+}
+/* .img2{
+    width: 90%;
+}
+.img3{
+    width: 100%;
+} */
+.card-group cardg{
+    width: 90%;
+     
+}
+.h11{
+    padding-left: 50px;
+}
+*body{
+    background-color: blueviolet;
+}
