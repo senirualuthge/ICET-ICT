@@ -1,0 +1,344 @@
+/* =========================================================================
+   styles.css — Responsive Interactive Portfolio
+   Modular stylesheet: theme tokens, base layer, components, animations.
+   Tailwind (Play CDN) handles utilities; this file owns the design system.
+   -------------------------------------------------------------------------
+   Table of contents
+     1. Theme tokens (CSS variables) & dark/light themes
+     2. Base / resets / accessibility helpers
+     3. Layout helpers & typography
+     4. Navigation
+     5. Buttons, chips, cards, forms
+     6. Skills bars & accordion
+     7. Projects grid, filter & modal
+     8. Timeline
+     9. Animations & microinteractions
+    10. Responsive tweaks
+    11. Reduced-motion & print
+   ========================================================================= */
+
+/* ---------------------------------------------------------------- 1. THEME */
+:root {
+  --accent: #6366f1;          /* theme accent — overridden per theme */
+  --accent-2: #a855f7;
+
+  --base: #ffffff;            /* page background */
+  --surface: #f8fafc;         /* card / nav surface */
+  --line: #e2e8f0;            /* borders */
+  --body: #1e293b;            /* primary text */
+  --muted: #64748b;           /* secondary text */
+
+  --shadow: 0 10px 30px -12px rgb(15 23 42 / 0.25);
+  --radius: 1rem;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark {
+  --accent: #818cf8;
+  --accent-2: #c084fc;
+
+  --base: #0b1020;
+  --surface: #131a2e;
+  --line: #24304d;
+  --body: #e2e8f0;
+  --muted: #94a3b8;
+
+  --shadow: 0 16px 40px -16px rgb(0 0 0 / 0.7);
+}
+
+/* Expose tokens to Tailwind utility names used in the markup */
+.bg-base      { background-color: var(--base); }
+.bg-surface   { background-color: var(--surface); }
+.text-body    { color: var(--body); }
+.text-muted   { color: var(--muted); }
+.border-line  { border-color: var(--line); }
+.bg-accent    { background-color: var(--accent); }
+.text-accent  { color: var(--accent); }
+.border-accent{ border-color: var(--accent); }
+
+/* ------------------------------------------------------------- 2. BASE/A11Y */
+* { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--base);
+  color: var(--body);
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
+  overflow-x: hidden;
+}
+
+/* Visible focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: fixed; top: -100px; left: 1rem; z-index: 100;
+  background: var(--accent); color: #fff; padding: 0.6rem 1rem;
+  border-radius: 0.6rem; transition: top 0.25s var(--ease);
+}
+.skip-link:focus { top: 1rem; }
+
+/* Lock scroll when the modal is open */
+body.modal-open { overflow: hidden; }
+
+/* --------------------------------------------- 3. LAYOUT & TYPOGRAPHY */
+.font-display { font-family: "Space Grotesk", "Inter", sans-serif; }
+
+.section-head { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent);
+}
+.section-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700; letter-spacing: -0.02em; margin-top: 0.4rem;
+}
+
+/* Decorative background blobs use a blend mode + filter */
+.blob { mix-blend-mode: screen; filter: blur(8px); }
+html:not(.dark) .blob { mix-blend-mode: multiply; opacity: 0.55; }
+
+.caret {
+  display: inline-block; width: 2px; height: 1.1em; margin-left: 2px;
+  background: var(--accent); vertical-align: -0.15em;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+.stat {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  padding: 0.9rem; text-align: center;
+}
+.stat dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.stat dd { font-family: "Space Grotesk", sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--accent); }
+
+/* ------------------------------------------------------------- 4. NAV */
+#site-header.scrolled {
+  background: color-mix(in srgb, var(--base) 78%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.nav-link {
+  display: inline-block; padding: 0.5rem 0.9rem; border-radius: 9999px;
+  font-size: 0.9rem; font-weight: 500; color: var(--muted);
+  transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.nav-link:hover { color: var(--body); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+/* Active state driven by scrollspy */
+.nav-link.is-active { color: #fff; background: var(--accent); }
+
+.icon-btn {
+  display: inline-grid; place-items: center; height: 2.5rem; width: 2.5rem;
+  border: 1px solid var(--line); border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  color: var(--body); cursor: pointer;
+  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.icon-btn:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+.icon-btn:active { transform: translateY(0) scale(0.96); }
+
+#to-top { box-shadow: var(--shadow); }
+
+/* --------------------------------------------------- 5. BUTTONS/FORMS */
+.btn-primary, .btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.25rem; border-radius: 0.8rem;
+  font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease),
+              background-color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff; box-shadow: 0 10px 24px -10px var(--accent);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px var(--accent); }
+.btn-primary:active { transform: translateY(0) scale(0.985); }
+
+.btn-ghost {
+  border: 1px solid var(--line); color: var(--body);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+.chip {
+  border: 1px solid var(--line); border-radius: 9999px;
+  padding: 0.35rem 0.8rem; font-size: 0.8rem; color: var(--muted);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+.chip-icon {
+  display: inline-grid; place-items: center; height: 1.9rem; width: 1.9rem; flex: none;
+  border-radius: 0.6rem; font-size: 0.72rem; font-weight: 700;
+  background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent);
+}
+.contact-row { display: flex; align-items: center; gap: 0.75rem; }
+.contact-row a { color: var(--muted); transition: color 0.2s var(--ease); }
+.contact-row a:hover { color: var(--accent); }
+
+.card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: var(--shadow);
+}
+
+.label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--muted); }
+.input {
+  width: 100%; padding: 0.7rem 0.9rem; border-radius: 0.7rem;
+  border: 1px solid var(--line); background: var(--base); color: var(--body);
+  font-size: 0.9rem; transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.input::placeholder { color: var(--muted); opacity: 0.7; }
+.input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+.input[aria-invalid="true"] { border-color: #ef4444; }
+.error { min-height: 1.1rem; margin-top: 0.25rem; font-size: 0.78rem; color: #ef4444; }
+
+/* --------------------------------------------- 6. SKILL BARS & ACCORDION */
+.bar {
+  height: 0.5rem; border-radius: 9999px; overflow: hidden;
+  background: color-mix(in srgb, var(--line) 70%, transparent);
+}
+.bar > span {
+  display: block; height: 100%; width: 0; border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 1.1s var(--ease);
+}
+
+.acc-item { border: 1px solid var(--line); border-radius: 0.8rem; overflow: hidden; }
+.acc-trigger {
+  display: flex; width: 100%; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 0.9rem 1rem; font-weight: 600; font-size: 0.92rem;
+  background: transparent; color: var(--body); cursor: pointer; text-align: left;
+  transition: background-color 0.2s var(--ease);
+}
+.acc-trigger:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.acc-chevron { transition: transform 0.3s var(--ease); }
+.acc-trigger[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
+.acc-panel {
+  max-height: 0; overflow: hidden; padding: 0 1rem;
+  font-size: 0.88rem; color: var(--muted);
+  visibility: hidden;                       /* keep collapsed text out of the a11y tree */
+  transition: max-height 0.4s var(--ease), padding 0.4s var(--ease), visibility 0.4s;
+}
+.acc-panel.is-open { max-height: 20rem; padding: 0 1rem 1rem; visibility: visible; }
+
+/* -------------------------------------------- 7. PROJECTS GRID & MODAL */
+.filter-btn {
+  border: 1px solid var(--line); border-radius: 9999px;
+  padding: 0.4rem 0.95rem; font-size: 0.82rem; font-weight: 500;
+  color: var(--muted); background: transparent; cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.repo-card {
+  display: flex; flex-direction: column; gap: 0.75rem;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  padding: 1.25rem; cursor: pointer; text-align: left;
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  animation: fade-up 0.5s var(--ease) both;
+}
+.repo-card:hover {
+  transform: translateY(-6px); border-color: var(--accent);
+  box-shadow: 0 20px 40px -20px var(--accent);
+}
+.repo-card:hover .repo-icon { transform: rotate(-8deg) scale(1.08); }
+.repo-icon {
+  display: grid; place-items: center; height: 2.75rem; width: 2.75rem;
+  border-radius: 0.8rem; color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  transition: transform 0.3s var(--ease);
+}
+.repo-card[hidden] { display: none; }
+
+.skeleton {
+  border-radius: var(--radius); border: 1px solid var(--line);
+  background: linear-gradient(100deg,
+    color-mix(in srgb, var(--surface) 90%, transparent) 30%,
+    color-mix(in srgb, var(--line) 60%, transparent) 50%,
+    color-mix(in srgb, var(--surface) 90%, transparent) 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+/* Native <dialog> driven modal */
+.modal {
+  position: fixed; inset: 0; z-index: 80; margin: auto;
+  width: min(38rem, calc(100vw - 2rem));
+  border: 1px solid var(--line); border-radius: 1.25rem;
+  background: var(--base); color: var(--body); padding: 1.75rem;
+  box-shadow: var(--shadow); opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease), overlay 0.28s allow-discrete, display 0.28s allow-discrete;
+}
+.modal[open] { opacity: 1; transform: translateY(0) scale(1); }
+.modal::backdrop {
+  background: rgb(2 6 23 / 0.6); backdrop-filter: blur(4px);
+  opacity: 0; transition: opacity 0.28s var(--ease);
+}
+.modal[open]::backdrop { opacity: 1; }
+.modal-panel { position: relative; max-height: 80vh; overflow-y: auto; padding-right: 2.5rem; }
+.modal-backdrop { position: fixed; inset: 0; }
+
+@starting-style {
+  .modal[open] { opacity: 0; transform: translateY(18px) scale(0.98); }
+}
+
+/* ----------------------------------------------------------- 8. TIMELINE */
+.timeline { position: relative; margin-left: 0.6rem; padding-left: 2rem; border-left: 2px solid var(--line); }
+.tl-item { position: relative; padding-bottom: 2rem; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -2.62rem; top: 0.35rem;
+  height: 0.85rem; width: 0.85rem; border-radius: 9999px;
+  background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.tl-date { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); }
+.tl-title { font-family: "Space Grotesk", sans-serif; font-size: 1.05rem; font-weight: 600; margin-top: 0.15rem; }
+.tl-text { margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); }
+.tl-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.tl-item.visible { opacity: 1; transform: none; }
+
+/* --------------------------------------------- 9. ANIMATIONS & REVEALS */
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* Scroll-reveal helper, toggled by IntersectionObserver */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* --------------------------------------------------- 10. RESPONSIVE */
+@media (max-width: 768px) {
+  .section-head { margin-bottom: 1.75rem; }
+  .modal { padding: 1.25rem; }
+}
+
+/* --------------------------------- 11. REDUCED MOTION & PRINT */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .tl-item { opacity: 1 !important; transform: none !important; }
+}
+
+@media print {
+  #site-header, #to-top, #scroll-progress, .skip-link, footer { display: none !important; }
+  body { background: #fff; color: #000; }
+}

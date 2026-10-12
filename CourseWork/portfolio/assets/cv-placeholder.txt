@@ -1,0 +1,30 @@
+YOUR NAME
+Web Developer & ICT Undergraduate
+
+This file is a placeholder for your CV. Replace it with a real CV (.pdf) and
+update the download link in index.html:
+
+  <a href="assets/cv-placeholder.txt" download ...>
+
+becomes
+
+  <a href="assets/your-cv.pdf" download ...>
+
+CONTACT
+  Email:     you@example.com
+  GitHub:    github.com/your-username
+  LinkedIn:  linkedin.com/in/your-name
+
+EDUCATION
+  Institute of Computer Engineering Technology (ICET)
+  Higher Diploma in Information & Communication Technology, 2024 - present
+
+SKILLS
+  HTML5 & semantic markup, CSS3, Tailwind CSS, vanilla JavaScript,
+  responsive design, accessibility (a11y), REST APIs, Git & GitHub, Figma
+
+SELECTED PROJECTS
+  - Responsive Interactive Portfolio (HTML5 + Tailwind + JS + GitHub API)
+  - Weather Dashboard (OpenWeather API)
+  - Task Tracker (localStorage, keyboard-first UI)
+  - CSS Art Gallery (gradients, filters, blend modes)
