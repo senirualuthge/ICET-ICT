@@ -1,5 +1,7 @@
-*{
-    background:rgb(174, 173, 173);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -8,33 +10,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgb(174, 173, 173);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.btns{
-    padding: 30%;
-
-}
-exp {
-  font-size: 14px;
-  min-height: 18px;
-}
-
-.val {
-  font-size: 34px;
-  white-space: nowrap;
-  overflow-x: auto;
-  align-items: flex-end;
-}
-
-.btn{
-    box-sizing: border-box; 
-    box-sizing: content-box;   
-    color:#000;
+.btns {
+  width: 320px;
 }
 
 .screen {
   border: 1px solid #000;
+  background: #fff;
   padding: 10px;
   margin-bottom: 12px;
   text-align: right;
@@ -43,3 +29,39 @@ exp {
   flex-direction: column;
   justify-content: flex-end;
 }
+
+.exp {
+  font-size: 14px;
+  min-height: 18px;
+  color: #555;
+}
+
+.val {
+  font-size: 34px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.calc {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calc td {
+  padding: 4px;
+}
+
+.btn {
+  width: 100%;
+  padding: 16px 0;
+  font-size: 18px;
+  color: #000;
+  background: #f5f5f5;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.btn:hover  { background: #eee; }
+.btn:active { background: #ddd; }
+
+.eq { background: #f0a030; }

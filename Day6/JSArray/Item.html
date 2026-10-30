@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="Customer.html">&larr; Customers</a>
+        <a class="active" href="Item.html">Items</a>
+    </nav>
+
+    <div class="box">
+        <h1>Add Item</h1>
+
+        <form onsubmit="addItem(); return false;">
+
+            <label for="txtItem">Item</label>
+            <input type="text" id="txtItem" placeholder="Enter item name" required>
+
+            <label for="txtQuantity">Quantity</label>
+            <input type="number" id="txtQuantity" min="1" step="1" placeholder="Enter quantity" required>
+
+            <label for="txtUnitPrice">Unit Price</label>
+            <input type="number" id="txtUnitPrice" min="0" step="0.01" placeholder="Enter unit price" required>
+
+            <button type="submit">Add Item</button>
+            <button type="button" class="clear" onclick="clearForm()">Clear</button>
+        </form>
+    </div>
+
+    <script src="item.js"></script>
+</body>
+</html>

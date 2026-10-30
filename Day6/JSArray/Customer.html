@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="nav">
+        <a class="active" href="Customer.html">Customers</a>
+        <a href="Item.html">Items &rarr;</a>
+    </nav>
+
+    <div class="box">
+        <h1>Add Customer</h1>
+
+        <form onsubmit="addCustomer(); return false;">
+
+            <label for="txtName">Customer Name</label>
+            <input type="text" id="txtName" placeholder="Enter customer name" >
+
+            <label for="cboGender">Gender</label>
+            <select id="cboGender" required>
+                <option value="">-- Select gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="txtName">Addreess </label>
+            <input type="text" id="txtName" placeholder="Enter  Address" >
+            <label for="txtName">Age </label>
+            <input type="text" id="txtName" placeholder="Enter  Age" >
+            <label for="txtName">Contact </label>
+            <input type="text" id="txtName" placeholder="Enter  Contact Number" >
+
+
+
+
+            <button type="submit">Add Customer</button>
+            <button type="button" class="clear" onclick="clearForm()">Clear</button>
+        </form>
+    </div>
+
+    <script src="customer.js"></script>
+</body>
+</html>
