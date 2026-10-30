@@ -3,19 +3,38 @@ const ITEM_KEY = "items";
 
 let items = [];
 
-
-
-function addCustomerOnAction(){
-    let txtName=document.getElementById("txtName").value;
-    let txtAge=document.getElementById("txtAge").value;
-    let txtAddress=document.getElementById("txtAddress")
-    let txtContact=document.getElementById("txtContact").value;
-
-
-    console.log(txtName);
-    console.log(txtAge);
-    console.log(txtAddress);
-    console.log(txtContact); 
-    
-
+function loadItems() {
+    const saved = localStorage.getItem(ITEM_KEY);
+    items = saved ? JSON.parse(saved) : [];
+    console.log("items array:", items);
 }
+
+function saveItems() {
+    localStorage.setItem(ITEM_KEY, JSON.stringify(items));
+}
+
+function addItem() {
+    let txtItem = document.getElementById("txtItem").value;
+    let txtQuantity = document.getElementById("txtQuantity").value;
+    let txtUnitPrice = document.getElementById("txtUnitPrice").value;
+
+    let item = {
+        item: txtItem,
+        quantity: txtQuantity,
+        unitPrice: txtUnitPrice
+    };
+
+    items.push(item);
+    saveItems();
+
+    console.log(items);
+
+    document.querySelector("form").reset();
+}
+
+function clearForm() {
+    document.querySelector("form").reset();
+    document.getElementById("txtItem").focus();
+}
+
+loadItems();
