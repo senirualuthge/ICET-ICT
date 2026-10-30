@@ -39,19 +39,24 @@
     padding: 20px;
     width:50%;
 }
-/* .img2{
+.img1{
+    align-items: center;
+}
+.img11{
     width: 90%;
 }
-.img3{
-    width: 100%;
-} */
+
 .card-group cardg{
     width: 90%;
      
 }
+
 .h11{
     padding-left: 50px;
 }
 *body{
     background-color: blueviolet;
+}
+.h1 her carousel{
+    padding-left: 60px;
 }
