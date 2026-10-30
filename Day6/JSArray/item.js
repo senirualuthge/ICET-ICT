@@ -38,3 +38,35 @@ function clearForm() {
 }
 
 loadItems();
+
+let customer ={
+    name:"Saman",
+    age:"12",
+    address:"walana",
+    salary:"7500",
+    contact:{
+        provider:"Dialog",
+        ContactNo:"123654789098",
+        data:{
+            sample:"0001",
+            test1:{
+                vm:"km90",
+                sv:"kn80"
+            }
+        }
+    }
+    orders:[
+        {
+            name:"egg bun",
+            quentity:"33",
+            unitPrice:"150",
+        }
+        {
+            name:"vegbun",
+            unitprice:"100"
+        }
+
+    ]
+}
+
+console.log(customer.contact.ContactNo);
