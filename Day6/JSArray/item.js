@@ -60,7 +60,8 @@ let customer ={
             name:"egg bun",
             quentity:"33",
             unitPrice:"150",
-        }
+        },
+        
         {
             name:"vegbun",
             unitprice:"100"
