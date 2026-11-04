@@ -6,6 +6,43 @@
     <title>JS Array</title>
 </head>
 <body>
+    <div>
+        <h1>Customer List</h1>
+        <input type="text" id="txtName" placeholder="Enter customer name">
+        <button onclick="buttonClick()">Add Customer</button>
+        <p id="lblCustomerName"></p>
+        <ol id="olCustomers"></ol>
+    </div>    
     
+    <div>
+        <h1>Item List</h1>
+        <input type="text" id="item" placeholder="Enter item name">
+        <button onclick="buttonClick1()">Add Item</button>
+        <p id="lblItemName"></p>
+        <ol id="olItems"></ol>
+    </div>
+    <div>
+        <h1>Customer Details</h1>
+        <input type="text" id="txtCustomerId" placeholder="Enter customer id">
+        <input type="text" id="txtCustomerName" placeholder="Enter customer name">
+        <input type="text" id="txtCustomerAge" placeholder="Enter customer age">
+        <input type="text" id="txtCustomerSalary" placeholder="Enter customer salary">
+        <button onclick="addCustomer()">Add Customer</button>
+        <p id="lblCustomerId"></p>
+        <ol id="olCustomerId"></ol>     
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Customer Id</th>
+                <th>Customer Age</th>
+                <th>Customer Salary</th>
+            </tr>
+        </thead>
+        <tbody id="customerTableBody"></tbody>
+    </table>
+    <script src="script.js"></script>
 </body>
 </html>
