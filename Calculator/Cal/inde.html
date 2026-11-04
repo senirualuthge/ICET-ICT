@@ -11,43 +11,45 @@
         <div class="btns">
 
             <div class="screen">
-                <div class="exp" id="exp"></div>
-                <div class="val" id="val">0</div>
+                <div class="exp" id="op"></div>
+                <div class="val" id="a">0</div>
             </div>
                 
         <table class="calc" border="1">
             <tr class="d1">
-                <td><button class="btn">AC</button></td>
-                <td><button class="btn">&#9003;</button></td>
-                <td><button class="btn">%</button></td>
-                <td><button class="btn">/</button></td>
-            </tr>
-            <tr class="d2">
-                <td><button class="btn">7</button></td>
-                <td><button class="btn">8</button></td>
-                <td><button class="btn">9</button></td>
-                <td><button class="btn">*</button></td>
-            </tr>
-            <tr class="d3">
-                <td><button class="btn">4</button></td>
-                <td><button class="btn">5</button></td>
-                <td><button class="btn">6</button></td>
-                <td><button class="btn">-</button></td>
-            </tr>
-            <tr class="d4">
-                <td><button class="btn">1</button></td>
-                <td><button class="btn">2</button></td>
-                <td><button class="btn">3</button></td>
-                <td><button class="btn">+</button></td>
-            </tr>
-            <tr class="d5">
-                <td><button class="btn">0</button></td>
-                <td><button class="btn">.00</button></td>
+                <td><button class="btn" onclick="onClick('AC')">AC</button></td>
+                <td><button class="btn" onclick="onClick('back')">&#9003;</button></td>
+                <td><button class="btn" onclick="onClick('%')">%</button></td>
+                <td><button class="btn" onclick="onClick('/')">/</button></td>
+                </tr>
+                <tr class="d2">
+                <td><button class="btn" onclick="onClick('7')">7</button></td>
+                <td><button class="btn" onclick="onClick('8')">8</button></td>
+                <td><button class="btn" onclick="onClick('9')">9</button></td>
+                <td><button class="btn" onclick="onClick('*')">*</button></td>
+                </tr>
+                <tr class="d3">
+                <td><button class="btn" onclick="onClick('4')">4</button></td>
+                <td><button class="btn" onclick="onClick('5')">5</button></td>
+                <td><button class="btn" onclick="onClick('6')">6</button></td>
+                <td><button class="btn" onclick="onClick('-')">&#8722;</button></td>
+                </tr>
+                
+                <tr class="d4">
+                <td><button class="btn" onclick="onClick('1')">1</button></td>
+                <td><button class="btn" onclick="onClick('2')">2</button></td>
+                <td><button class="btn" onclick="onClick('3')">3</button></td>
+                <td><button class="btn" onclick="onClick('+')">+</button></td>
+                </tr>
 
-                <td><button class="btn">.</button></td>
-                <td colspan="2"><button  class="eq">=</button></td>
+                <tr class="d5">
+                <td><button class="btn" onclick="onClick('0')">0</button></td>
+                <td><button class="btn" onclick="onClick('00')">00</button></td>
+                <td><button class="btn" onclick="onClick('.')">.</button></td>
+                <td><button class="eq" onclick="onClick('=')"> = </button></td>
+                </tr>
             </tr>
-        </table>
+            </table>
         </div>
 
 
