@@ -39,35 +39,35 @@ function clearForm() {
 
 loadItems();
 
-let customer ={
-    name:"Saman",
-    age:"12",
-    address:"walana",
-    salary:"7500",
-    contact:{
-        provider:"Dialog",
-        ContactNo:"123654789098",
-        data:{
-            sample:"0001",
-            test1:{
-                vm:"km90",
-                sv:"kn80"
+let customer = {
+    name: "Saman",
+    age: "12",
+    address: "walana",
+    salary: "7500",
+    contact: {
+        provider: "Dialog",
+        ContactNo: "123654789098",
+        data: {
+            sample: "0001",
+            test1: {
+                vm: "km90",
+                sv: "kn80"
             }
         }
-    }
-    orders:[
+    },
+    orders: [
         {
-            name:"egg bun",
-            quentity:"33",
-            unitPrice:"150",
+            name: "egg bun",
+            quantity: "33",
+            unitPrice: "150"
         },
-
+        
         {
-            name:"vegbun",
-            unitprice:"100"
+            name: "vegbun",
+            quantity: "1",
+            unitPrice: "100"
         }
-
     ]
-}
+};
 
 console.log(customer.contact.ContactNo);
