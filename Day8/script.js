@@ -7,6 +7,8 @@ function buttonClick() {
 
   customerNames.push(txtName);
   console.log(customerNames);
+
+  loadNames();
 }
 
 function loadNames() {
@@ -24,6 +26,8 @@ function buttonClick1() {
 
   items.push(itemName);
   console.log(items);
+
+  loadItems();
 }
 
 function loadItems() {
@@ -72,5 +76,46 @@ function loadCustomerTable() {
     `<td>${customer.age}</td>` +
     `<td>${customer.salary}</td>` +
     `</tr>`;
+    
+  }
+}
+
+
+const studentList = [];
+
+function addStudent() {
+  let studentId = document.getElementById("stuId").value;
+  let studentName = document.getElementById("stuName").value;
+  let studentAge = document.getElementById("stuAge").value;
+
+  let student = {
+    id: studentId,
+    name: studentName,
+    age: studentAge,
+    
+  };
+
+  studentList.push(student);
+  console.log(studentList);
+
+  loadStudentTable();
+
+  document.getElementById("stuId").value = "";
+  document.getElementById("stuName").value = "";
+  document.getElementById("stuAge").value = "";
+}
+
+function loadStudentTable() {
+  let tableBody = document.getElementById("StudentTableBody");
+  tableBody.innerHTML = "";
+
+  for (let student of studentList) {
+    tableBody.innerHTML +=
+    `<tr>` +
+    `<td>${student.name}</td>` +
+    `<td>${student.id}</td>` +
+    `<td>${student.age}</td>` +
+    `</tr>`;
+    
   }
 }
