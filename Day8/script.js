@@ -68,11 +68,11 @@ function loadCustomerTable(){
     tableBody.innerHTML = "";
 
     for (let customer of customerList) {
-        tableBody.innerHTML += "<tr>" +
-            "<td>" + customer.name + "</td>" +
-            "<td>" + customer.id + "</td>" +
-            "<td>" + customer.age + "</td>" +
-            "<td>" + customer.salary + "</td>" +
+        tableBody.innerHTML += `<tr>` +
+            `<td>${customer.name}</td>` +
+            `<td>${customer.id}</td>` +
+            `<td>${customer.age}</td>` +
+            `<td>${customer.salary}</td>` +
             "</tr>";
     }
 }
